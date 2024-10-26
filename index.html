@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <title>Frontend Mentor | Bento grid</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    /*,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      outline: 2px solid lime;
+    }*/
+    body{
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: -0.15vw;
+    }
+    .main-content {
+      padding: 10%;
+      flex: 1 1 80%;
+      min-height: 100vh;
+      background-color: rgb(237, 237, 237);
+    }
+  .bento-grid {
+      display: grid;
+      height: 100%;
+      grid-template-rows: repeat(6, 8.5vw);
+      grid-template-columns: repeat(8, 1fr);
+      gap: 2vw;
+    }
+    .card {
+      border-radius: 0.6rem;
+      overflow: hidden;
+      text-align: left;
+    }
+    .hero-card{
+      background-color: hsl(256, 67%, 59%);
+      color: white;
+      grid-column: 3 / span 4;
+      grid-row: 1 / span 2;
+  
+    }
+    .post-card{
+      background-color: hsl(31, 66%, 93%);
+      color: black;
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 3;
+    }
+    .chart-card{
+      background-color: hsl(254, 88%, 90%);
+      color: black;
+      grid-column: 7 / span 2;
+      grid-row: 1 / span 4;
+    }
+    .chart-para{
+      color: black;
+      bottom: 0.1vw;
+      letter-spacing: normal; 
+    }
+    .ai-card{
+      background-color: hsl(39, 100%, 71%);
+      color: black;
+      grid-column: 1 / span 2;
+      grid-row: 4 / span 3;
+    }
+    .account-card{
+      background-color: hsl(0, 0%, 100%);
+      color: black;
+      grid-column: 3 / span 2;
+      grid-row: 3 / span 2;
+      font-size: 0.5rem;
+    }
+    .schedule-card{
+      background-color: hsl(39, 100%, 71%);
+      color: black;
+      grid-column: 5 / span 2;
+      grid-row: 3 / span 2;
+    }
+    .audience-card{
+      display: flex;
+      flex-direction: column;         
+      background-color: hsl(0, 0%, 100%);
+      color: black;
+      grid-column: 3 / span 2;
+      grid-row: 5 / span 2;
+    }
+    .followers-card{           
+      background-color: hsl(256, 67%, 59%);
+      color: white;
+      grid-column: 5/ span 4;
+      grid-row: 5 / span 2;
+    }
+    .hidden{
+      display: none;
+    }
+    .hero-heading{
+      font-size: clamp(20px, 3vw + 5px, 70px);
+      margin-top: 4%;
+      margin-left: 5%;      
+      margin-right: 5%;
+      line-height: 1;      
+      text-align: center;
+      font-weight: bold;
+    }
+    img{
+      width: 50%;
+    }
+    .hero-img, .post-img{
+      width: calc(12vw + 5px);
+      margin-inline: auto;
+      margin-top: 2.4%;
+      margin-bottom: 0px;
+    }
+    .hero-para{
+      margin-top: 1%;
+      font-size: calc(0.9vw + 5px);
+      margin-bottom: 2%;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: normal; 
+    }
+    .post-img{
+      width: 14vw;
+    }
+    .post-heading{
+      text-align: left;
+      font-size: clamp(10px, 2.25vw + 5px, 55px);
+      padding: 13%;
+      padding-bottom: 0.3vw;
+      line-height: 1;
+      font-weight: bold;
+    }
+    .chart-heading{
+      padding-top: 3vw;
+      padding-right: 2vw;
+      padding-left: 12.5%; 
+      font-size: clamp(7px, 1.7vw + 5px, 45px);
+      line-height: 1;
+      font-weight: bold;
+      padding-bottom: 1vw;
+    }
+    .chart-para{        
+      padding: 1.8vw;      
+      padding-top: 1.8vw; 
+      padding-left: 12.5%;
+      font-size: clamp(7px, 1.2vw + 0.5px, 25px);
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: normal; 
+    }
+    .chart-img{
+      width: 25vw;
+      height: 50%;
+      margin-left: 12.5%;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+    }
+    .ai-heading{               
+      padding: 1.8vw;      
+      padding-top: 1.5vw; 
+      padding-bottom: 1.5vw;
+      font-size: clamp(7px, 2.5vw + 3px, 50px);
+      line-height: 1;
+      font-weight: bold;
+    }
+    .ai-img{      
+      width: 15vw;
+      margin: auto;
+      margin-top: 0px;
+      margin-right: 1vw;
+    }
+    .account-heading{                   
+      padding: 1.5vw;
+      font-size: clamp(7px, 2vw + 3px, 50px);
+      font-weight: bold;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      line-height: 1;
+    }
+    .schedule-heading{                 
+      padding: 1.5vw;
+      padding-bottom: 0.8vw;
+      font-size: clamp(7px, 2vw + 3px, 50px);
+      font-weight: bold;
+      line-height: 1;
+    }
+    .schedule-img{
+      margin-inline: auto;
+      width: 80%;
+      height: auto;
+    }
+    .audience-heading{ 
+      margin-top: 5%;               
+      padding: 1.5vw;
+      font-size: clamp(20px, 3.9vw + 4px, 75px);
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+    .audience-subheading{                
+      padding: 1.6vw;
+      padding-right: 1vw;
+      padding-top: 1.1vw;
+      font-size: clamp(7px, 0.9vw + 3px, 50px);
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: normal; 
+    }
+    .audience-img{
+      margin-top: 0px;
+      padding-top: 0px;
+      margin-left: 1.7vw;
+      width: 11vw;
+      height: 4vw;
+      align-items: flex-end;
+    }
+    .followers-img{
+      padding: 1.8vw;
+      width: 80%;
+      padding-right: 0px;
+    }
+    .followers-heading{                
+      padding: 1.6vw;
+      padding-bottom: 0px;
+      padding-left: 1vw;
+      font-size: clamp(20px, 2.3vw + 3px, 70px);
+      line-height: 1;
+      margin-left: 0px;
+      align-self: center;
+    }
+    .account-img{
+      width: 23vw;
+      margin-left: 7%;
+    }        
+    @media (max-width: 716px) {
+      .bento-grid {
+        display: flex;
+        flex-direction: column;
+      }
+      .card {
+        display: flex;
+        width: 100%;  /* Ensures the card spans the entire single column */
+      }
+      .hero-heading{
+        padding: 5vw;
+        padding-bottom: 0px;
+        font-size: clamp(20px, 9.3vw + 2px, 90px);
+        margin-top: 5vw;
+        padding-top: 5vw;
+        margin-bottom: 4vw;
+      }
+      .hero-img{
+        width: 45vw;
+        margin-bottom: 2vw;
+      }
+      .hero-para{        
+        font-size: clamp(14px, 3.8vw + 2px, 70px);
+        margin-bottom: 10vw;
+
+      }
+      .account-heading{
+        padding: 5vw;
+        padding-bottom: 0px;
+        font-size: clamp(14px, 5.5vw + 0.5px, 90px);
+        margin-top: 2vw;
+        margin-bottom: 4vw;
+        padding-top: 0px;
+      }
+      .account-img{
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        width: 100%;
+      }
+      .schedule-card{
+        height: 53vw;
+        overflow: hidden;
+      }
+      .schedule-heading{
+        padding: 5vw;
+        padding-bottom: 0px;
+        font-size: clamp(14px, 5.5vw + 2px, 90px);
+        margin-bottom: 4vw;
+      }
+      .schedule-img{
+        width: 60%;
+        margin-left: 5vw;
+      
+      }
+      .chart-heading{
+        padding: 5vw;
+        padding-top: 7vw;
+        padding-bottom: 3vw;
+        font-size: clamp(14px, 5vw + 2px, 90px);
+        text-align: center;
+      }
+      .chart-img{
+        width: 85%;
+        margin-top: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
+        align-self: center;
+      }
+      .chart-para{
+        font-size: clamp(14px, 3.8vw + 2px, 70px);
+        padding: 5vw;
+        text-align: center;
+      }
+      .followers-card{
+        flex-direction: column !important;
+        height: auto;
+      }
+      .followers-img{
+        width: 70%;
+        margin-top: 5vw;
+        margin-inline: auto;
+      }
+      .followers-heading{
+        margin-block: 5vw;
+        margin-inline: 10vw;
+        text-align: center;
+        font-size: clamp(14px, 6.5vw + 2px, 70px);
+      }
+      .audience-heading{
+        font-size: clamp(30px, 12vw + 2px, 100px);
+        padding-left: 5vw;
+        margin-top: 5vw;
+      }
+      .audience-subheading{
+        font-size: clamp(14px, 3.8vw + 2px, 70px);
+        padding-left: 7vw;
+        margin-top: 2vw;
+      }
+      .audience-img{
+        width: 80%;
+        height: auto;
+        padding: 5vw;
+        padding-top: 2vw;
+      }
+      .post-heading{
+        font-size: clamp(14px, 6vw + 2px, 70px);
+        padding: 5vw;
+        margin-top: 5vw;
+        padding-bottom: 3vw;
+      }
+      .post-img{
+        width: 55%;
+        padding-left: 5vw;
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-bottom: 0px;
+        padding-bottom: 5vw;
+      }
+      .ai-heading{
+        font-size: clamp(14px, 6.5vw + 2px, 70px);
+        padding: 5vw;
+      }
+      .ai-img{
+        width: 68%;
+        margin: 5vw;
+        margin-top: 0px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <div class="bento-grid">      
+      <div class="card hero-card d-flex flex-column justify-content-center">
+        <h1 class="hero-heading">Social Media <span style="color: hsl(39, 100%, 71%);">10x</span> <span style="font-style: italic;">Faster</span> with AI</h1>
+        <img src="assets/images/illustration-five-stars.webp" class="hero-img">
+        <p class="hero-para">Over 4,000 5-star reviews</p>
+      </div>
+      <div class="card account-card">
+        <img class="account-img" src="assets/images/illustration-multiple-platforms.webp">
+        <h1 class="account-heading">Manage multiple accounts and platforms.</h1>
+      </div>  
+      <div class="card schedule-card">
+        <h1 class="schedule-heading">Maintain a consistent posting schedule.</h1>
+        <img class="schedule-img" src="assets/images/illustration-consistent-schedule.webp">
+      </div>
+      <div class="card chart-card">
+        <h1 class="chart-heading">Schedule to social media.</h1>
+        <img class="chart-img" src="assets/images/illustration-schedule-posts.webp">
+        <p class="chart-para">Optimize post timings to publish content at the perfect time for your audience.</p>
+      </div>   
+      <div class="card followers-card d-flex flex-row">
+        <img class="followers-img" src="assets/images/illustration-grow-followers.webp">
+        <h1 class="followers-heading">Grow followers with non-stop content.</h1>
+      </div>
+      <div class="card audience-card">
+        <h1 class="audience-heading">>56%</h1>
+        <h2 class="audience-subheading">faster audience growth</h2>
+        <img class="audience-img" src="assets/images/illustration-audience-growth.webp">
+      </div>
+      <div class="card post-card d-flex flex-column justify-content-center">
+        <h1 class="post-heading">Create and schedule content <span style="color: hsl(256, 67%, 59%); font-style: italic;">quicker.</span></h1>
+        <img src="assets/images/illustration-create-post.webp" class="post-img">
+      </div>
+      <div class="card ai-card">
+        <h1 class="ai-heading">Write your content using AI.</h1>
+        <img class="ai-img" src="assets/images/illustration-ai-content.webp">
+      </div>
+    </div>    
+  </div>
+   
+  <div class="attribution hidden">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Harikrishnan R</a>.
+  </div>
+</body>
+</html>
